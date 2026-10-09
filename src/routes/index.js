@@ -1,8 +1,11 @@
-const express = require('express');
+// All routes of the app are combined here
+const express = require("express");
+const healthRoutes = require("./healthRoutes");
+const { checkDatabase } = require("../controllers/dbController");
+
 const router = express.Router();
 
-const healthRoutes = require('./healthRoutes');
-
-router.use('/health', healthRoutes);
+router.use("/health", healthRoutes);
+router.get("/db-check", checkDatabase); // temporary
 
 module.exports = router;
