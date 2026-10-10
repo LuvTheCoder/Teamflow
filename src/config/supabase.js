@@ -5,4 +5,4 @@ const supabase = createClient(env.supabaseUrl, env.supabaseServiceKey, {
     auth : {persistSession : false},
 });
 
-module.exports = {supabase};
+module.exports = supabase;
