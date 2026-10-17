@@ -28,4 +28,4 @@ async function protect(req, res, next){
     next();
 }
 
-module.exports = {protect};
+module.exports = protect;

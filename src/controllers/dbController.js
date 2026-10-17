@@ -1,16 +1,19 @@
-const { supabase } = require("../config/supabase");
+const supabase = require("../config/supabase");
 
-// Temporary: checks that Supabase is reachable
 async function checkDatabase(req, res) {
-  // Race the Supabase query against an 8-second timeout
-  const timeout = new Promise((_, reject) =>
-    setTimeout(() => reject(new Error("Supabase query timed out after 8s")), 8000)
-  );
+  let timerId;
+  const timeout = new Promise((_, reject) => {
+    timerId = setTimeout(
+      () => reject(new Error("Supabase query timed out after 8s")),
+      8000
+    );
+  });
 
   try {
     const query = supabase.from("users").select("id").limit(1);
 
     const { error } = await Promise.race([query, timeout]);
+    clearTimeout(timerId); // prevent the timer from leaking
 
     if (error) {
       return res.status(500).json({
@@ -27,6 +30,7 @@ async function checkDatabase(req, res) {
       message: "Database connected successfully",
     });
   } catch (err) {
+    clearTimeout(timerId); // also clear if the timeout itself fired
     res.status(500).json({
       status: "error",
       message: err.message,
