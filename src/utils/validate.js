@@ -1,4 +1,4 @@
-const AppError = require("../utils/AppError");
+const AppError = require("./AppError");
 
 
 // Checks data against a Zod schema. Returns clean data or throws a 400 error
