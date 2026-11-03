@@ -6,6 +6,8 @@ const env = {
     supabaseUrl: process.env.SUPABASE_URL,
     supabaseServiceKey: process.env.SUPABASE_SERVICE_ROLE_KEY,
     jwtSecret: process.env.JWT_SECRET,
+    upstashRedisUrl: process.env.UPSTASH_REDIS_REST_URL,
+    upstashRedisToken: process.env.UPSTASH_REDIS_REST_TOKEN,
 };
 
 const required = ["supabaseUrl", "supabaseServiceKey", "jwtSecret"];
