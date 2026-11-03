@@ -2,6 +2,7 @@ const express = require("express")
 const teamController = require("../controllers/teamController")
 const protect = require("../middleware/authMiddleware")
 const projectController = require("../controllers/projectController")
+const messageController = require("../controllers/messageController")
 
 const router = express.Router();
 

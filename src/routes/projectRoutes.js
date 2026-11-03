@@ -2,6 +2,8 @@ const express = require("express");
 const projectController = require("../controllers/projectController");
 const taskController = require("../controllers/taskController");
 const protect = require("../middleware/authMiddleware");
+const messageController = require("../controllers/messageController");
+
 
 const router = express.Router();
 

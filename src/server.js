@@ -27,6 +27,7 @@ app.use(errorHandler);
 const server = http.createServer(app);
 initSocket(server);
 
-app.listen(5001, () => {
-    console.log(`TeamFlow API running on http://localhost:5001`);
+// Use server.listen (not app.listen) so Socket.IO shares the same HTTP server
+server.listen(env.port || 5001, () => {
+    console.log(`TeamFlow API running on http://localhost:${env.port || 5001}`);
 });

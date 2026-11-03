@@ -3,6 +3,7 @@ const { z } = require("zod");
 const validate = require("../utils/validate");
 const messageService = require("../services/messageService");
 const chatAccess = require("../services/chatAccessService");
+const {broadcastMessage} = require("../socket/index")
 
 const teamParamsSchema = z.object({
   teamId: z.string().uuid("must be a valid id"),
