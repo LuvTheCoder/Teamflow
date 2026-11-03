@@ -18,4 +18,8 @@ router.post("/:teamId/invitations", teamController.inviteMember);
 router.post("/:teamId/projects", projectController.createProject);
 router.get("/:teamId/projects", projectController.getTeamProjects);
 
+// Team chat
+router.get("/:teamId/messages", messageController.getTeamMessages);
+router.post("/:teamId/messages", messageController.sendTeamMessage);
+
 module.exports = router;

@@ -15,4 +15,8 @@ router.post("/:projectId/members", projectController.addProjectMember);
 router.post("/:projectId/tasks", taskController.createTask);
 router.get("/:projectId/tasks", taskController.getProjectTasks);
 
+// Project chat
+router.get("/:projectId/messages", messageController.getProjectMessages);
+router.post("/:projectId/messages", messageController.sendProjectMessage);
+
 module.exports = router;
