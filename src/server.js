@@ -1,3 +1,4 @@
+const http = require("http");
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
@@ -6,6 +7,7 @@ const env = require("./config/env");
 const routes = require('./routes');
 const notFound = require('./middleware/notFound');
 const errorHandler = require('./middleware/errorHandler');
+const { initSocket } = require("./socket");
 
 const app = express();
 
@@ -21,6 +23,9 @@ app.use('/api', routes);
 // These two must always be last
 app.use(notFound);
 app.use(errorHandler);
+
+const server = http.createServer(app);
+initSocket(server);
 
 app.listen(5001, () => {
     console.log(`TeamFlow API running on http://localhost:5001`);

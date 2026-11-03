@@ -52,7 +52,7 @@ async function sendTeamMessage(req, res) {
     content,
   });
 
-  // Part 2: we will also send this message live to everyone in the room here
+  broadcastMessage(message);
 
   res.status(201).json({ status: "success", data: { message } });
 }
@@ -80,7 +80,7 @@ async function sendProjectMessage(req, res) {
     content,
   });
 
-  // Part 2: we will also send this message live to everyone in the room here
+   broadcastMessage(message);
 
   res.status(201).json({ status: "success", data: { message } });
 }
