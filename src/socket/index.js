@@ -6,6 +6,7 @@ const validate = require("../utils/validate");
 const { verifyToken } = require("../utils/jwt");
 const authService = require("../services/authService");
 const chatAccess = require("../services/chatAccessService");
+const { isAllowedOrigin } = require("../utils/corsOrigin");
 
 let io = null;
 
@@ -33,7 +34,7 @@ const roomSchema = z.object({
 
 function initSocket(httpServer) {
   io = new Server(httpServer, {
-    cors: { origin: env.clientUrl },
+    cors: { origin: isAllowedOrigin, credentials: true },
   });
 
   // Runs once for every new connection. Rejects people who are not logged in

@@ -9,11 +9,13 @@ const notFound = require('./middleware/notFound');
 const errorHandler = require('./middleware/errorHandler');
 const { initSocket } = require("./socket");
 
+const { isAllowedOrigin } = require("./utils/corsOrigin");
+
 const app = express();
 
 // Security & parsing middleware
 app.use(helmet());
-app.use(cors({ origin: env.clientUrl }));
+app.use(cors({ origin: isAllowedOrigin, credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -28,5 +30,5 @@ const server = http.createServer(app);
 initSocket(server);
 
 server.listen(env.port || 5001, () => {
-    console.log(`TeamFlow API running on http://localhost:${env.port || 5001}`);
+    console.log(`Wiener API running on http://localhost:${env.port || 5001}`);
 });
