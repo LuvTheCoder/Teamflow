@@ -6,8 +6,11 @@ function isAllowedOrigin(origin, callback) {
     return callback(null, true);
   }
 
-  // Exact match with configured clientUrl
-  if (origin === env.clientUrl) {
+  // Match with configured clientUrl or any Vercel domain (*.vercel.app)
+  if (
+    origin === env.clientUrl ||
+    /^https:\/\/([a-zA-Z0-9-]+\.)*vercel\.app$/.test(origin)
+  ) {
     return callback(null, true);
   }
 
@@ -24,4 +27,3 @@ function isAllowedOrigin(origin, callback) {
 }
 
 module.exports = { isAllowedOrigin };
-
